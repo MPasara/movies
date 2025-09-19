@@ -2,11 +2,19 @@ import 'package:movies/features/popular/data/models/movie_response.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
 
 class MovieEntityMapper {
-  MovieEntityMapper({required this.genresMap});
+  MovieEntityMapper();
 
-  final Map<int, String> genresMap;
+  Movie fromResponseWithGenres(
+    MovieResponse response,
+    Map<int, String> genresMap,
+  ) {
+    final genreNames =
+        response.genreIds
+            ?.map((id) => genresMap[id] ?? 'Unknown')
+            .where((name) => name != 'Unknown')
+            .toList() ??
+        [];
 
-  Movie fromResponse(MovieResponse response) {
     return Movie(
       id: response.id,
       title: response.title,
@@ -14,9 +22,7 @@ class MovieEntityMapper {
       posterImagePath: response.posterPath,
       backdropImagePath: response.backdropPath,
       voteAverage: response.voteAverage,
-      genres: response.genreIds!
-          .map((id) => genresMap[id] ?? 'Unknown')
-          .toList(),
+      genres: genreNames,
     );
   }
 }

@@ -27,7 +27,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState<MovieWrapper>> {
       _loadMoreMemoizer = null;
     }
 
-    final result = await _movieRepository.getPopularMovies(event.page);
+    final result = await _movieRepository.fetchPopularMovies(event.page);
 
     result.fold(
       (failure) {
@@ -77,7 +77,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState<MovieWrapper>> {
         );
         emit(MovieData(loadingWrapper));
 
-        final result = await _movieRepository.getPopularMovies(nextPage);
+        final result = await _movieRepository.fetchPopularMovies(nextPage);
 
         result.fold(
           (failure) {

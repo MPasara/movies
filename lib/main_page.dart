@@ -36,7 +36,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = [
+  final List<Widget> _pages = const [
     PopularMoviesRoute(),
     FavouriteMoviesPage(),
   ];
@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> {
           );
         }).toList(),
       ),
-      body: _pages[_selectedIndex],
+      body: IndexedStack(index: _selectedIndex, children: _pages),
     );
   }
 }
