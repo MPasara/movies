@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies/features/favourite/presentation/favourite_movies_page.dart';
-import 'package:movies/features/popular/presentation/popular_movies_page.dart';
+import 'package:movies/features/popular/presentation/popular_movies_route.dart';
 
 enum NavigationTab {
   popular(
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   static const List<Widget> _pages = [
-    PopularMoviesPage(),
+    PopularMoviesRoute(),
     FavouriteMoviesPage(),
   ];
 
