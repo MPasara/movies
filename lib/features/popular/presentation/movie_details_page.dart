@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/common/presentation/widgets/favourite_movie_button.dart';
 import 'package:movies/common/utils/constants.dart';
 import 'package:movies/config/env.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
@@ -53,7 +54,6 @@ class MovieDetailsPage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.66,
             decoration: BoxDecoration(
               color: Colors.white,
-
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
@@ -74,7 +74,7 @@ class MovieDetailsPage extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 3,
                             softWrap: true,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
@@ -82,10 +82,7 @@ class MovieDetailsPage extends StatelessWidget {
                         ),
                         Flexible(
                           flex: 1,
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.favorite_outline),
-                          ),
+                          child: FavouriteMovieButton(movie: movie),
                         ),
                       ],
                     ),
@@ -93,8 +90,7 @@ class MovieDetailsPage extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 4, bottom: 12),
                       child: Row(
                         children: [
-                          Icon(Icons.star, color: Colors.amber),
-
+                          const Icon(Icons.star, color: Colors.amber),
                           Text(
                             '${movie.voteAverage.toStringAsFixed(1)}/10 IMDb',
                           ),
@@ -111,13 +107,16 @@ class MovieDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     movie.description != ''
-                        ? Text(
+                        ? const Text(
                             'Description',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         : const SizedBox(),
                     Column(
-                      children: [SizedBox(height: 8), Text(movie.description)],
+                      children: [
+                        const SizedBox(height: 8),
+                        Text(movie.description),
+                      ],
                     ),
                   ],
                 ),

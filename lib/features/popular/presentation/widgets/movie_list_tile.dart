@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/common/presentation/widgets/favourite_movie_button.dart';
 import 'package:movies/common/utils/constants.dart';
 import 'package:movies/config/env.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
@@ -20,13 +21,11 @@ class MovieListTile extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {
-          Navigator.pushNamed(
-            context,
-            MovieDetailsPage.routeName,
-            arguments: movie,
-          );
-        },
+        onTap: () => Navigator.pushNamed(
+          context,
+          MovieDetailsPage.routeName,
+          arguments: movie,
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
           child: Row(
@@ -54,11 +53,23 @@ class MovieListTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      movie.title,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          flex: 5,
+                          child: Text(
+                            movie.title,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: FavouriteMovieButton(movie: movie),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 4),
 
@@ -83,11 +94,6 @@ class MovieListTile extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-
-              IconButton(
-                icon: const Icon(Icons.favorite_outline),
-                onPressed: () {},
               ),
             ],
           ),
