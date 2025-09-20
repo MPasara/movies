@@ -8,21 +8,25 @@ class MovieEntityMapper {
     MovieResponse response,
     Map<int, String> genresMap,
   ) {
-    final genreNames =
-        response.genreIds
-            ?.map((id) => genresMap[id] ?? 'Unknown')
-            .where((name) => name != 'Unknown')
-            .toList() ??
-        [];
+    List<String> genreNames = [];
+
+    // Only try to map genres if we have both genre IDs and a non-empty genre map
+    if (response.genreIds?.isNotEmpty == true && genresMap.isNotEmpty) {
+      genreNames = response.genreIds!
+          .map((id) => genresMap[id])
+          .where((name) => name != null) // Filter out nulls
+          .cast<String>()
+          .toList();
+    }
 
     return Movie(
-      id: response.id,
-      title: response.title,
-      description: response.overview,
-      posterImagePath: response.posterPath,
+      id: response.id ?? 0,
+      title: response.title ?? '',
+      description: response.overview ?? '',
+      posterImagePath: response.posterPath ?? '',
       backdropImagePath: response.backdropPath,
-      voteAverage: response.voteAverage,
-      genres: genreNames,
+      voteAverage: response.voteAverage ?? 0,
+      genres: genreNames, // Will be empty list if genres unavailable
     );
   }
 }

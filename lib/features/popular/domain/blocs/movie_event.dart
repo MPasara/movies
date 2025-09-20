@@ -24,3 +24,13 @@ final class LoadMoreMovies extends MovieEvent {
 final class RefreshMovies extends MovieEvent {
   const RefreshMovies();
 }
+
+final class SearchMovies extends MovieEvent {
+  const SearchMovies(this.query, {this.isRefreshing = false});
+
+  final String query;
+  final bool isRefreshing;
+
+  @override
+  List<Object?> get props => [query, isRefreshing];
+}

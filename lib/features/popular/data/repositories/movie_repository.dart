@@ -10,6 +10,7 @@ import 'package:movies/features/popular/domain/entities/movie_wrapper.dart';
 
 abstract interface class MovieRepository {
   Future<Either<Failure, MovieWrapper>> fetchPopularMovies(int page);
+  Future<Either<Failure, MovieWrapper>> searchForMovies(String query);
 }
 
 class MovieRepositoryImpl implements MovieRepository {
@@ -79,5 +80,43 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, void>> refreshGenresCache() async {
     _genresCache = null;
     return await _fetchAndCacheGenres();
+  }
+
+  @override
+  Future<Either<Failure, MovieWrapper>> searchForMovies(String query) async {
+    try {
+      final response = await _apiClient.searchMovies(query);
+
+      if (_genresCache == null) {
+        final genreResult = await _fetchAndCacheGenres();
+        if (genreResult.isLeft) {
+          return genreResult.fold(
+            (failure) => Left(failure),
+            (_) => throw Exception(),
+          );
+        }
+      }
+
+      final searchResult = response.results
+          .map(
+            (movieResponse) => _movieEntityMapper.fromResponseWithGenres(
+              movieResponse,
+              _genresCache!,
+            ),
+          )
+          .toList();
+      return Right(
+        MovieWrapper(
+          currentPage: response.page,
+          totalPages: response.totalPages,
+          isLoading: false,
+          movies: searchResult,
+        ),
+      );
+    } catch (e, st) {
+      log(e.toString());
+      log(st.toString());
+      return Left(Failure(message: 'Search movies failed: ${e.toString()}'));
+    }
   }
 }

@@ -11,6 +11,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState<MovieWrapper>> {
     on<LoadPopularMovies>(_loadPopularMovies);
     on<LoadMoreMovies>(_loadMoreMovies);
     on<RefreshMovies>(_refreshMovies);
+    on<SearchMovies>(_searchMovies);
   }
 
   final MovieRepository _movieRepository;
@@ -29,32 +30,27 @@ class MovieBloc extends Bloc<MovieEvent, MovieState<MovieWrapper>> {
 
     final result = await _movieRepository.fetchPopularMovies(event.page);
 
-    result.fold(
-      (failure) {
-        return emit(MovieError(failure));
-      },
-      (movieWrapper) {
-        if (event.page == 1 || event.isRefreshing) {
+    result.fold((failure) => emit(MovieError(failure)), (movieWrapper) {
+      if (event.page == 1 || event.isRefreshing) {
+        _movieWrapper = movieWrapper;
+        emit(MovieData(movieWrapper));
+      } else {
+        if (_movieWrapper != null) {
+          final updatedMovieWrapper = MovieWrapper(
+            totalPages: movieWrapper.totalPages,
+            currentPage: movieWrapper.currentPage,
+            movies: [..._movieWrapper!.movies, ...movieWrapper.movies],
+            isLoading: false,
+          );
+
+          _movieWrapper = updatedMovieWrapper;
+          emit(MovieData(updatedMovieWrapper));
+        } else {
           _movieWrapper = movieWrapper;
           emit(MovieData(movieWrapper));
-        } else {
-          if (_movieWrapper != null) {
-            final updatedMovieWrapper = MovieWrapper(
-              totalPages: movieWrapper.totalPages,
-              currentPage: movieWrapper.currentPage,
-              movies: [..._movieWrapper!.movies, ...movieWrapper.movies],
-              isLoading: false,
-            );
-
-            _movieWrapper = updatedMovieWrapper;
-            emit(MovieData(updatedMovieWrapper));
-          } else {
-            _movieWrapper = movieWrapper;
-            emit(MovieData(movieWrapper));
-          }
         }
-      },
-    );
+      }
+    });
   }
 
   Future<void> _loadMoreMovies(
@@ -113,5 +109,29 @@ class MovieBloc extends Bloc<MovieEvent, MovieState<MovieWrapper>> {
     Emitter<MovieState<MovieWrapper>> emit,
   ) async {
     add(const LoadPopularMovies(page: 1, isRefreshing: true));
+  }
+
+  Future<void> _searchMovies(
+    SearchMovies event,
+    Emitter<MovieState<MovieWrapper>> emit,
+  ) async {
+    if (event.query.trim().isEmpty) {
+      add(const LoadPopularMovies(page: 1));
+      return;
+    }
+
+    if (event.isRefreshing) {
+      emit(const MovieLoading());
+    }
+
+    _movieWrapper = null;
+    _loadMoreMemoizer = null;
+
+    final result = await _movieRepository.searchForMovies(event.query);
+
+    result.fold((failure) => emit(MovieError(failure)), (movieWrapper) {
+      _movieWrapper = movieWrapper;
+      emit(MovieData(movieWrapper));
+    });
   }
 }

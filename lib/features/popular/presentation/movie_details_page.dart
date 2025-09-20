@@ -40,7 +40,7 @@ class MovieDetailsPage extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () => Navigator.of(context).pop(),
-                splashRadius: 24, // controls ripple size
+                splashRadius: 24,
               ),
             ),
           ),
@@ -53,7 +53,7 @@ class MovieDetailsPage extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.66,
             decoration: BoxDecoration(
               color: Colors.white,
-              //color: context.appColors.background,
+
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
@@ -78,14 +78,13 @@ class MovieDetailsPage extends StatelessWidget {
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                             ),
-                            //style: context.appTextStyles.movieDetailsTitle,
                           ),
                         ),
                         Flexible(
                           flex: 1,
                           child: IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.bookmark_outline),
+                            icon: Icon(Icons.favorite_outline),
                           ),
                         ),
                       ],
@@ -95,10 +94,9 @@ class MovieDetailsPage extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(Icons.star, color: Colors.amber),
-                          //spacing4,
+
                           Text(
                             '${movie.voteAverage.toStringAsFixed(1)}/10 IMDb',
-                            //style: context.appTextStyles.movieRating,
                           ),
                         ],
                       ),
@@ -116,17 +114,10 @@ class MovieDetailsPage extends StatelessWidget {
                         ? Text(
                             'Description',
                             style: TextStyle(fontWeight: FontWeight.bold),
-                            //style: context.appTextStyles.movieCardTitle,
                           )
                         : const SizedBox(),
                     Column(
-                      children: [
-                        SizedBox(height: 8),
-                        Text(
-                          movie.description,
-                          //style: context.appTextStyles.movieDescription,
-                        ),
-                      ],
+                      children: [SizedBox(height: 8), Text(movie.description)],
                     ),
                   ],
                 ),

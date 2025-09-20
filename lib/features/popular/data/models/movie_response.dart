@@ -10,23 +10,23 @@ class MovieResponse {
 
   final List<int>? genreIds;
 
-  final int id;
+  final int? id;
 
   final String? originalLanguage;
 
   final String? originalTitle;
 
-  final String overview;
+  final String? overview;
   final double? popularity;
 
-  final String posterPath;
+  final String? posterPath;
 
   final String? releaseDate;
 
-  final String title;
+  final String? title;
   final bool? video;
 
-  final double voteAverage;
+  final double? voteAverage;
 
   final int? voteCount;
 

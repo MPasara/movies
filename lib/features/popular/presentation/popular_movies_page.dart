@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/features/popular/domain/blocs/movie_bloc.dart';
@@ -16,11 +18,16 @@ class PopularMoviesPage extends StatefulWidget {
 
 class _PopularMoviesPageState extends State<PopularMoviesPage> {
   late final ScrollController _scrollController;
+  late final TextEditingController _searchController;
+  Timer? _debounceTimer;
+  bool _isSearching = false;
+  String _currentQuery = '';
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
+    _searchController = TextEditingController();
     _scrollController.addListener(_onScroll);
 
     context.read<MovieBloc>().add(const LoadPopularMovies());
@@ -29,11 +36,13 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _searchController.dispose();
+    _debounceTimer?.cancel();
     super.dispose();
   }
 
   void _onScroll() {
-    if (_isBottom) {
+    if (_isBottom && !_isSearching) {
       context.read<MovieBloc>().add(const LoadMoreMovies());
     }
   }
@@ -45,13 +54,29 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
     return currentScroll >= (maxScroll * 0.8);
   }
 
+  void _onSearchChanged(String query) {
+    _debounceTimer?.cancel();
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
+      setState(() {
+        _currentQuery = query.trim();
+        _isSearching = _currentQuery.isNotEmpty;
+      });
+
+      if (_currentQuery.isEmpty) {
+        context.read<MovieBloc>().add(const LoadPopularMovies());
+      } else {
+        context.read<MovieBloc>().add(SearchMovies(_currentQuery));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Popular Movies'),
+          title: Text(_isSearching ? 'Search Results' : 'Popular Movies'),
           centerTitle: false,
           elevation: 0,
           scrolledUnderElevation: 0,
@@ -66,12 +91,28 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               MovieError(:final failure) => ErrorView(
                 message: failure.message,
                 onRetry: () {
-                  context.read<MovieBloc>().add(const LoadPopularMovies());
+                  if (_isSearching && _currentQuery.isNotEmpty) {
+                    context.read<MovieBloc>().add(SearchMovies(_currentQuery));
+                  } else {
+                    context.read<MovieBloc>().add(const LoadPopularMovies());
+                  }
                 },
               ),
               MovieData(:final data) => PopularMoviesList(
                 movieWrapper: data,
                 scrollController: _scrollController,
+                searchController: _searchController,
+                onSearchChanged: _onSearchChanged,
+                isSearching: _isSearching,
+                onRefresh: () {
+                  if (_isSearching && _currentQuery.isNotEmpty) {
+                    context.read<MovieBloc>().add(
+                      SearchMovies(_currentQuery, isRefreshing: true),
+                    );
+                  } else {
+                    context.read<MovieBloc>().add(const RefreshMovies());
+                  }
+                },
               ),
             };
           },

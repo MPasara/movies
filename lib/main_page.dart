@@ -10,8 +10,8 @@ enum NavigationTab {
     label: 'Popular',
   ),
   favourites(
-    unselectedIcon: Icons.bookmark_border,
-    selectedIcon: Icons.bookmark,
+    unselectedIcon: Icons.favorite_outline,
+    selectedIcon: Icons.favorite,
     label: 'Favourites',
   );
 

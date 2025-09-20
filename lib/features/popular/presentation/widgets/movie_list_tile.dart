@@ -86,7 +86,7 @@ class MovieListTile extends StatelessWidget {
               ),
 
               IconButton(
-                icon: const Icon(Icons.bookmark_outline),
+                icon: const Icon(Icons.favorite_outline),
                 onPressed: () {},
               ),
             ],
