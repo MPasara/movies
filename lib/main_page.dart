@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies/features/favourite/presentation/favourite_movies_page.dart';
-import 'package:movies/features/popular/presentation/popular_movies_route.dart';
+import 'package:movies/features/popular/presentation/popular_movies_page.dart';
+
+import 'generated/l10n.dart';
 
 enum NavigationTab {
-  popular(
-    unselectedIcon: Icons.movie_outlined,
-    selectedIcon: Icons.movie,
-    label: 'Popular',
-  ),
+  popular(unselectedIcon: Icons.movie_outlined, selectedIcon: Icons.movie),
   favourites(
     unselectedIcon: Icons.favorite_outline,
     selectedIcon: Icons.favorite,
-    label: 'Favourites',
   );
 
   const NavigationTab({
     required this.unselectedIcon,
     required this.selectedIcon,
-    required this.label,
   });
 
   final IconData unselectedIcon;
   final IconData selectedIcon;
-  final String label;
+
+  String get label => switch (this) {
+    NavigationTab.popular => S.current.popular,
+    NavigationTab.favourites => S.current.favourites,
+  };
 }
 
 class MainPage extends StatefulWidget {
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = const [
-    PopularMoviesRoute(),
+    PopularMoviesPage(),
     FavouriteMoviesPage(),
   ];
 

@@ -8,6 +8,7 @@ import 'package:movies/features/popular/domain/blocs/movie_state.dart';
 import 'package:movies/features/popular/domain/entities/movie_wrapper.dart';
 import 'package:movies/features/popular/presentation/widgets/error_view.dart';
 import 'package:movies/features/popular/presentation/widgets/popular_movies_list.dart';
+import 'package:movies/generated/l10n.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   const PopularMoviesPage({super.key});
@@ -76,7 +77,11 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(_isSearching ? 'Search Results' : 'Popular Movies'),
+          title: Text(
+            _isSearching
+                ? S.of(context).search_results_header
+                : S.of(context).popular_header,
+          ),
           centerTitle: false,
           elevation: 0,
           scrolledUnderElevation: 0,

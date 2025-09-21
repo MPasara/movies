@@ -10,7 +10,6 @@ class FavouriteMoviesBloc extends Bloc<FavouriteMoviesEvent, Map<int, Movie>> {
     on<LoadFavouriteMovies>(_loadFavouriteMovies);
     on<ToggleFavouriteMovie>(_toggleFavouriteMovie);
 
-    // Auto-load favourites when bloc is created
     add(const LoadFavouriteMovies());
   }
 
@@ -24,8 +23,6 @@ class FavouriteMoviesBloc extends Bloc<FavouriteMoviesEvent, Map<int, Movie>> {
 
     result.fold(
       (failure) {
-        // Handle error - you might want to emit error to a separate stream
-        // or use a global error handler
         log('Failed to load favourite movies: ${failure.message}');
       },
       (favouriteMovies) {
@@ -45,7 +42,6 @@ class FavouriteMoviesBloc extends Bloc<FavouriteMoviesEvent, Map<int, Movie>> {
     final currentFavourites = Map<int, Movie>.from(state);
 
     if (currentFavourites.containsKey(movie.id)) {
-      // Remove from favourites
       final result = await _favouriteMoviesRepository.unfavouriteMovie(
         movie.id,
       );
@@ -53,7 +49,6 @@ class FavouriteMoviesBloc extends Bloc<FavouriteMoviesEvent, Map<int, Movie>> {
       result.fold(
         (failure) {
           log('Failed to unfavourite movie: ${failure.message}');
-          // Could emit a snackbar message here
         },
         (_) {
           currentFavourites.remove(movie.id);
@@ -61,24 +56,20 @@ class FavouriteMoviesBloc extends Bloc<FavouriteMoviesEvent, Map<int, Movie>> {
         },
       );
     } else {
-      // Add to favourites
       final result = await _favouriteMoviesRepository.favouriteMovie(movie);
 
       result.fold(
         (failure) {
           log('Failed to favourite movie: ${failure.message}');
-          // Could emit a snackbar message here
         },
         (_) {
           currentFavourites[movie.id] = movie;
           emit(currentFavourites);
-          // Could emit a success message here
         },
       );
     }
   }
 
-  // Helper methods for UI
   bool isMovieFavourite(int movieId) => state.containsKey(movieId);
 
   List<Movie> get favouriteMoviesList => state.values.toList();

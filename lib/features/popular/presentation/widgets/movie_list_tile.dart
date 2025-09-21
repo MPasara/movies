@@ -6,6 +6,7 @@ import 'package:movies/config/env.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
 import 'package:movies/features/popular/presentation/movie_details_page.dart';
 import 'package:movies/features/popular/presentation/widgets/genre_chip.dart';
+import 'package:movies/generated/l10n.dart';
 
 class MovieListTile extends StatelessWidget {
   const MovieListTile({super.key, required this.movie});
@@ -78,7 +79,11 @@ class MovieListTile extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.amber, size: 18),
                         const SizedBox(width: 4),
                         Text(
-                          '${movie.voteAverage.toStringAsFixed(1)}/10 IMDb',
+                          S
+                              .of(context)
+                              .movie_rating(
+                                movie.voteAverage.toStringAsFixed(1),
+                              ),
                           style: const TextStyle(color: Colors.black),
                         ),
                       ],

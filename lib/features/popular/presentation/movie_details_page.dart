@@ -5,6 +5,7 @@ import 'package:movies/common/utils/constants.dart';
 import 'package:movies/config/env.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
 import 'package:movies/features/popular/presentation/widgets/genre_chip.dart';
+import 'package:movies/generated/l10n.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   static const routeName = '/movie-details';
@@ -92,7 +93,11 @@ class MovieDetailsPage extends StatelessWidget {
                         children: [
                           const Icon(Icons.star, color: Colors.amber),
                           Text(
-                            '${movie.voteAverage.toStringAsFixed(1)}/10 IMDb',
+                            S
+                                .of(context)
+                                .movie_rating(
+                                  movie.voteAverage.toStringAsFixed(1),
+                                ),
                           ),
                         ],
                       ),
@@ -107,8 +112,8 @@ class MovieDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     movie.description != ''
-                        ? const Text(
-                            'Description',
+                        ? Text(
+                            S.of(context).description,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         : const SizedBox(),
