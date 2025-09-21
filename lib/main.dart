@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movies/common/di/dependency_injection.dart';
 import 'package:movies/features/favourite/data/repositories/database_service.dart';
 import 'package:movies/features/favourite/domain/blocs/favourite_movies_bloc.dart';
 import 'package:movies/features/popular/domain/blocs/movie_bloc.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
 import 'package:movies/features/popular/presentation/movie_details_page.dart';
+import 'package:movies/generated/l10n.dart';
 import 'package:movies/main_page.dart';
 import 'package:movies/movie_observer.dart';
 
@@ -33,6 +35,14 @@ class MoviesApp extends StatelessWidget {
         BlocProvider(create: (context) => getIt<FavouriteMoviesBloc>()),
       ],
       child: MaterialApp(
+        locale: Locale('en'),
+        supportedLocales: S.delegate.supportedLocales,
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
