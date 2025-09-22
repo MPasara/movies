@@ -1,6 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:movies/common/data/api_client.dart';
 import 'package:movies/common/data/dio_client.dart';
+import 'package:movies/features/favourite/data/repositories/database_service.dart';
+import 'package:movies/features/favourite/data/repositories/database_service_impl.dart';
+import 'package:movies/features/favourite/data/repositories/favourite_movies_repository.dart';
+import 'package:movies/features/favourite/domain/blocs/favourite_movies_bloc.dart';
 import 'package:movies/features/popular/data/mappers/movie_entity_mapper.dart';
 import 'package:movies/features/popular/data/repositories/genre_repository.dart';
 import 'package:movies/features/popular/data/repositories/movie_repository.dart';
@@ -10,9 +14,8 @@ final getIt = GetIt.instance;
 
 void setupDependencies() {
   _registerNetworking();
-
+  _registerDatabase();
   _registerRepositories();
-
   _registerBlocs();
 }
 
@@ -22,6 +25,10 @@ void resetDependencies() {
 
 void _registerNetworking() {
   getIt.registerLazySingleton<ApiClient>(() => ApiClient(DioClient.create()));
+}
+
+void _registerDatabase() {
+  getIt.registerLazySingleton<DatabaseService>(() => DatabaseServiceImpl());
 }
 
 void _registerRepositories() {
@@ -36,8 +43,16 @@ void _registerRepositories() {
       getIt<GenreRepository>(),
     ),
   );
+
+  getIt.registerLazySingleton<FavouriteMoviesRepository>(
+    () => FavouriteMoviesRepositoryImpl(getIt<DatabaseService>()),
+  );
 }
 
 void _registerBlocs() {
   getIt.registerFactory<MovieBloc>(() => MovieBloc(getIt<MovieRepository>()));
+
+  getIt.registerFactory<FavouriteMoviesBloc>(
+    () => FavouriteMoviesBloc(getIt<FavouriteMoviesRepository>()),
+  );
 }

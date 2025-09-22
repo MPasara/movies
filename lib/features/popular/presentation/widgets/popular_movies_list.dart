@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/features/popular/domain/entities/movie_wrapper.dart';
 import 'package:movies/features/popular/presentation/widgets/movie_list_tile.dart';
+import 'package:movies/generated/l10n.dart';
 
 class PopularMoviesList extends StatelessWidget {
   const PopularMoviesList({
@@ -42,7 +43,7 @@ class PopularMoviesList extends StatelessWidget {
               title: TextField(
                 controller: searchController,
                 decoration: InputDecoration(
-                  hintText: 'Search movies...',
+                  hintText: S.of(context).search_movies,
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: searchController.text.isNotEmpty
                       ? IconButton(
@@ -72,8 +73,10 @@ class PopularMoviesList extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     movieWrapper.movies.isEmpty
-                        ? 'No movies found for "${searchController.text}"'
-                        : 'Found ${movieWrapper.movies.length} movies',
+                        ? S.of(context).no_movies_found(searchController.text)
+                        : S
+                              .of(context)
+                              .search_result(movieWrapper.movies.length),
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
@@ -96,8 +99,8 @@ class PopularMoviesList extends StatelessWidget {
                           const SizedBox(height: 16),
                           Text(
                             isSearching
-                                ? 'No movies found\nTry a different search term'
-                                : 'No movies available',
+                                ? S.of(context).no_movies_found_body
+                                : S.of(context).no_movies_available,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,

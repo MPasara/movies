@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/generated/l10n.dart';
 
 class ErrorView extends StatelessWidget {
   const ErrorView({super.key, required this.message, required this.onRetry});
@@ -17,7 +18,7 @@ class ErrorView extends StatelessWidget {
             const Icon(Icons.error_outline, size: 80, color: Colors.red),
             const SizedBox(height: 16),
             Text(
-              'Oops! Something went wrong',
+              S.of(context).oops_error_message,
               style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
@@ -28,7 +29,10 @@ class ErrorView extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
-            ElevatedButton(onPressed: onRetry, child: const Text('Try Again')),
+            ElevatedButton(
+              onPressed: onRetry,
+              child: Text(S.of(context).try_again),
+            ),
           ],
         ),
       ),

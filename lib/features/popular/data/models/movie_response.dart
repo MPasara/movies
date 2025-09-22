@@ -10,7 +10,7 @@ class MovieResponse {
 
   final List<int>? genreIds;
 
-  final int? id;
+  final int id;
 
   final String? originalLanguage;
 
@@ -23,7 +23,7 @@ class MovieResponse {
 
   final String? releaseDate;
 
-  final String? title;
+  final String title;
   final bool? video;
 
   final double? voteAverage;
@@ -37,13 +37,13 @@ class MovieResponse {
     required this.id,
     this.originalLanguage,
     this.originalTitle,
-    required this.overview,
+    this.overview,
     this.popularity,
-    required this.posterPath,
+    this.posterPath,
     this.releaseDate,
     required this.title,
     this.video,
-    required this.voteAverage,
+    this.voteAverage,
     this.voteCount,
   });
 
