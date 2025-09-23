@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:either_dart/either.dart';
 import 'package:movies/common/domain/failure.dart';
 import 'package:movies/features/favourite/data/repositories/database_service.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
+import 'package:movies/generated/l10n.dart';
 
 abstract interface class FavouriteMoviesRepository {
   Future<Either<Failure, void>> favouriteMovie(Movie movie);
@@ -21,10 +20,8 @@ class FavouriteMoviesRepositoryImpl implements FavouriteMoviesRepository {
     try {
       await _databaseService.favouriteMovie(movie);
       return const Right(null);
-    } catch (e, st) {
-      log(e.toString());
-      log(st.toString());
-      return Left(Failure(message: 'Favourite movie failed'));
+    } catch (e) {
+      return Left(Failure(message: S.current.favourite_movie_failed));
     }
   }
 
@@ -33,10 +30,8 @@ class FavouriteMoviesRepositoryImpl implements FavouriteMoviesRepository {
     try {
       final movies = await _databaseService.getFavouriteMovies();
       return Right(movies);
-    } catch (e, st) {
-      log(e.toString());
-      log(st.toString());
-      return Left(Failure(message: 'Load favourite movies failed'));
+    } catch (e) {
+      return Left(Failure(message: S.current.load_favourite_movies_failed));
     }
   }
 
@@ -45,10 +40,8 @@ class FavouriteMoviesRepositoryImpl implements FavouriteMoviesRepository {
     try {
       await _databaseService.unfavouriteMovie(movieId);
       return const Right(null);
-    } catch (e, st) {
-      log(e.toString());
-      log(st.toString());
-      return Left(Failure(message: 'Unfavourite movie failed'));
+    } catch (e) {
+      return Left(Failure(message: S.current.unfavourite_movie_failed));
     }
   }
 }

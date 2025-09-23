@@ -218,6 +218,86 @@ class S {
   String get croatian {
     return Intl.message('Croatian', name: 'croatian', desc: '', args: []);
   }
+
+  /// `Failed to fetch genres..`
+  String get failed_to_fetch_genres {
+    return Intl.message(
+      'Failed to fetch genres..',
+      name: 'failed_to_fetch_genres',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to fetch popular movies..`
+  String get failed_to_fetch_popular_movies {
+    return Intl.message(
+      'Failed to fetch popular movies..',
+      name: 'failed_to_fetch_popular_movies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search movies failed..`
+  String get search_failed {
+    return Intl.message(
+      'Search movies failed..',
+      name: 'search_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fetch language failed..`
+  String get fetch_language_failed {
+    return Intl.message(
+      'Fetch language failed..',
+      name: 'fetch_language_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set language failed..`
+  String get set_language_failed {
+    return Intl.message(
+      'Set language failed..',
+      name: 'set_language_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite movie failed..`
+  String get favourite_movie_failed {
+    return Intl.message(
+      'Favourite movie failed..',
+      name: 'favourite_movie_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Load favourite movies failed..`
+  String get load_favourite_movies_failed {
+    return Intl.message(
+      'Load favourite movies failed..',
+      name: 'load_favourite_movies_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unfavourite movie failed`
+  String get unfavourite_movie_failed {
+    return Intl.message(
+      'Unfavourite movie failed',
+      name: 'unfavourite_movie_failed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

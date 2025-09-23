@@ -32,9 +32,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "croatian": MessageLookupByLibrary.simpleMessage("Croatian"),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "failed_to_fetch_genres": MessageLookupByLibrary.simpleMessage(
+      "Failed to fetch genres..",
+    ),
+    "failed_to_fetch_popular_movies": MessageLookupByLibrary.simpleMessage(
+      "Failed to fetch popular movies..",
+    ),
+    "favourite_movie_failed": MessageLookupByLibrary.simpleMessage(
+      "Favourite movie failed..",
+    ),
     "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
     "favourites_header": MessageLookupByLibrary.simpleMessage("😍 Favourites"),
+    "fetch_language_failed": MessageLookupByLibrary.simpleMessage(
+      "Fetch language failed..",
+    ),
     "general": MessageLookupByLibrary.simpleMessage("⚙️ General"),
+    "load_favourite_movies_failed": MessageLookupByLibrary.simpleMessage(
+      "Load favourite movies failed..",
+    ),
     "movie_rating": m0,
     "no_favourite_movies": MessageLookupByLibrary.simpleMessage(
       "🍿 No favourites yet?\n Your top picks will appear here soon! 🎥✨",
@@ -51,14 +66,23 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "popular": MessageLookupByLibrary.simpleMessage("Popular"),
     "popular_header": MessageLookupByLibrary.simpleMessage("🔥 Popular"),
+    "search_failed": MessageLookupByLibrary.simpleMessage(
+      "Search movies failed..",
+    ),
     "search_movies": MessageLookupByLibrary.simpleMessage("Search movies"),
     "search_result": m2,
     "search_results_header": MessageLookupByLibrary.simpleMessage(
       "Search results",
     ),
+    "set_language_failed": MessageLookupByLibrary.simpleMessage(
+      "Set language failed..",
+    ),
     "start_adding_movies": MessageLookupByLibrary.simpleMessage(
       "Start adding movies to your favourites",
     ),
     "try_again": MessageLookupByLibrary.simpleMessage("Try again"),
+    "unfavourite_movie_failed": MessageLookupByLibrary.simpleMessage(
+      "Unfavourite movie failed",
+    ),
   };
 }

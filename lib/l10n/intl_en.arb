@@ -19,5 +19,13 @@
     "general" : "⚙️ General",
     "change_language" : "Change language",
     "english" : "English",
-    "croatian" : "Croatian"
+    "croatian" : "Croatian",
+    "failed_to_fetch_genres" : "Failed to fetch genres..",
+    "failed_to_fetch_popular_movies" : "Failed to fetch popular movies..",
+    "search_failed" : "Search movies failed..",
+    "fetch_language_failed" : "Fetch language failed..",
+    "set_language_failed" : "Set language failed..",
+    "favourite_movie_failed" : "Favourite movie failed..",
+    "load_favourite_movies_failed" : "Load favourite movies failed..",
+    "unfavourite_movie_failed" : "Unfavourite movie failed"
 }

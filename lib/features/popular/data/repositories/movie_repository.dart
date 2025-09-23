@@ -7,6 +7,7 @@ import 'package:movies/common/utils/constants.dart';
 import 'package:movies/features/popular/data/mappers/movie_entity_mapper.dart';
 import 'package:movies/features/popular/data/repositories/genre_repository.dart';
 import 'package:movies/features/popular/domain/entities/movie_wrapper.dart';
+import 'package:movies/generated/l10n.dart';
 
 abstract interface class MovieRepository {
   Future<Either<Failure, MovieWrapper>> fetchPopularMovies(int page);
@@ -31,10 +32,7 @@ class MovieRepositoryImpl implements MovieRepository {
       if (_genresCache == null) {
         final genreResult = await _fetchAndCacheGenres();
         if (genreResult.isLeft) {
-          return genreResult.fold(
-            (failure) => Left(failure),
-            (_) => throw Exception(),
-          );
+          return Left(genreResult.left);
         }
       }
 
@@ -54,15 +52,13 @@ class MovieRepositoryImpl implements MovieRepository {
           currentPage: response.page,
           totalPages: response.totalPages,
           movies: movies,
-          isLoading: false,
+          // isLoading: false,
         ),
       );
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
-      return Left(
-        Failure(message: 'Get popular movies failed: ${e.toString()}'),
-      );
+      return Left(Failure(message: S.current.failed_to_fetch_popular_movies));
     }
   }
 
@@ -75,11 +71,6 @@ class MovieRepositoryImpl implements MovieRepository {
       };
       return const Right(null);
     });
-  }
-
-  Future<Either<Failure, void>> refreshGenresCache() async {
-    _genresCache = null;
-    return await _fetchAndCacheGenres();
   }
 
   @override
@@ -116,7 +107,7 @@ class MovieRepositoryImpl implements MovieRepository {
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
-      return Left(Failure(message: 'Search movies failed: ${e.toString()}'));
+      return Left(Failure(message: S.current.search_failed));
     }
   }
 }

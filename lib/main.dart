@@ -34,7 +34,7 @@ class MoviesApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => getIt<MovieBloc>()),
         BlocProvider(create: (context) => getIt<FavouriteMoviesBloc>()),
-        BlocProvider(create: (context) => getIt<LocaleCubit>()..loadLocale()),
+        BlocProvider(create: (context) => getIt<LocaleCubit>()),
       ],
       child: Builder(
         builder: (context) {
@@ -46,7 +46,7 @@ class MoviesApp extends StatelessWidget {
               ...GlobalMaterialLocalizations.delegates,
             ],
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             ),
             home: const MainPage(),
             routes: {
