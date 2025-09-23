@@ -36,6 +36,7 @@ class PopularMoviesList extends StatelessWidget {
           controller: scrollController,
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               floating: true,
               snap: true,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,

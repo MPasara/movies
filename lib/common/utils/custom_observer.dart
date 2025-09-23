@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MovieObserver extends BlocObserver {
-  const MovieObserver();
+class CustomObserver extends BlocObserver {
+  const CustomObserver();
 
   @override
   void onChange(BlocBase bloc, Change change) {

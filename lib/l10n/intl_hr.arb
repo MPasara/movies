@@ -15,5 +15,9 @@
   "no_movies_found": "Nema pronađenih filmova za {query}",
   "search_result": "Pronađeno {count} filmova",
   "no_movies_found_body": "Nema pronađenih filmova\nPokušaj s drugim pojmom",
-  "no_movies_available": "Nema dostupnih filmova"
+  "no_movies_available": "Nema dostupnih filmova",
+    "general" : "⚙️ Općenito",
+    "change_language" : "Promijeni jezik",
+    "english" : "Engleski",
+    "croatian" : "Hrvatski"
 }

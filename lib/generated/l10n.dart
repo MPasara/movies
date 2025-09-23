@@ -193,6 +193,31 @@ class S {
       args: [],
     );
   }
+
+  /// `⚙️ General`
+  String get general {
+    return Intl.message('⚙️ General', name: 'general', desc: '', args: []);
+  }
+
+  /// `Change language`
+  String get change_language {
+    return Intl.message(
+      'Change language',
+      name: 'change_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message('English', name: 'english', desc: '', args: []);
+  }
+
+  /// `Croatian`
+  String get croatian {
+    return Intl.message('Croatian', name: 'croatian', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -15,5 +15,9 @@
     "no_movies_found" : "No movies found for {query}",
     "search_result" : "Found {count} movies",
     "no_movies_found_body" : "No movies found\nTry a different search term",
-    "no_movies_available" : "No movies available"
+    "no_movies_available" : "No movies available",
+    "general" : "⚙️ General",
+    "change_language" : "Change language",
+    "english" : "English",
+    "croatian" : "Croatian"
 }

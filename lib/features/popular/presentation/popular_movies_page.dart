@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/common/presentation/widgets/app_drawer.dart';
 import 'package:movies/features/popular/domain/blocs/movie_bloc.dart';
 import 'package:movies/features/popular/domain/blocs/movie_event.dart';
 import 'package:movies/features/popular/domain/blocs/movie_state.dart';
@@ -76,6 +77,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        drawer: AppDrawer(),
         appBar: AppBar(
           title: Text(
             _isSearching

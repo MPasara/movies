@@ -28,9 +28,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "change_language": MessageLookupByLibrary.simpleMessage("Change language"),
+    "croatian": MessageLookupByLibrary.simpleMessage("Croatian"),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
     "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
     "favourites_header": MessageLookupByLibrary.simpleMessage("😍 Favourites"),
+    "general": MessageLookupByLibrary.simpleMessage("⚙️ General"),
     "movie_rating": m0,
     "no_favourite_movies": MessageLookupByLibrary.simpleMessage(
       "🍿 No favourites yet?\n Your top picks will appear here soon! 🎥✨",

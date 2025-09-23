@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/common/presentation/widgets/app_drawer.dart';
 import 'package:movies/features/favourite/domain/blocs/favourite_movie_event.dart';
 import 'package:movies/features/favourite/domain/blocs/favourite_movies_bloc.dart';
 import 'package:movies/features/favourite/presentation/widgets/empty_list.dart';
@@ -13,21 +14,12 @@ class FavouriteMoviesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
         title: Text(S.of(context).favourites_header),
         centerTitle: false,
         elevation: 0,
         scrolledUnderElevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () {
-              context.read<FavouriteMoviesBloc>().add(
-                const LoadFavouriteMovies(),
-              );
-            },
-          ),
-        ],
       ),
       body: BlocBuilder<FavouriteMoviesBloc, Map<int, Movie>>(
         builder: (context, favouriteMovies) {
@@ -44,7 +36,6 @@ class FavouriteMoviesPage extends StatelessWidget {
               );
             },
             child: RawScrollbar(
-              //controller: scrollController,
               interactive: true,
               radius: const Radius.circular(10),
               thumbColor: Colors.black.withValues(alpha: 0.65),
