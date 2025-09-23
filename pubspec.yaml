@@ -36,6 +36,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   shared_preferences: ^2.5.3
+  flutter_native_splash: ^2.4.6
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +46,11 @@ dev_dependencies:
   retrofit_generator: ^10.0.5
   json_serializable: ^6.11.1
   loggy: ^2.0.3
+
+flutter_native_splash:
+  image: "assets/images/popcorn.jpeg"
+  color: "#FFFFFF"
+  color_dark: "#121212"
 
 flutter:
   uses-material-design: true
