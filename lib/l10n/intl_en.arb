@@ -27,5 +27,6 @@
     "set_language_failed" : "Set language failed..",
     "favourite_movie_failed" : "Favourite movie failed..",
     "load_favourite_movies_failed" : "Load favourite movies failed..",
-    "unfavourite_movie_failed" : "Unfavourite movie failed"
+    "unfavourite_movie_failed" : "Unfavourite movie failed",
+    "released_on" : "Released on"
 }

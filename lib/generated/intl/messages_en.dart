@@ -66,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "popular": MessageLookupByLibrary.simpleMessage("Popular"),
     "popular_header": MessageLookupByLibrary.simpleMessage("🔥 Popular"),
+    "released_on": MessageLookupByLibrary.simpleMessage("Released on"),
     "search_failed": MessageLookupByLibrary.simpleMessage(
       "Search movies failed..",
     ),

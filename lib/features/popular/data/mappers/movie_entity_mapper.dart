@@ -26,6 +26,9 @@ class MovieEntityMapper {
       backdropImagePath: response.backdropPath,
       voteAverage: response.voteAverage ?? 0,
       genres: genreNames,
+      releaseDate: (response.releaseDate != null && response.releaseDate != '')
+          ? DateTime.parse(response.releaseDate!)
+          : null,
     );
   }
 }

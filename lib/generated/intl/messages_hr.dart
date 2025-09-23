@@ -66,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "popular": MessageLookupByLibrary.simpleMessage("Popularno"),
     "popular_header": MessageLookupByLibrary.simpleMessage("🔥 Popularno"),
+    "released_on": MessageLookupByLibrary.simpleMessage("Datum izlaska"),
     "search_failed": MessageLookupByLibrary.simpleMessage(
       "Pretraga filmova nije uspjela..",
     ),

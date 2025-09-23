@@ -298,6 +298,11 @@ class S {
       args: [],
     );
   }
+
+  /// `Released on`
+  String get released_on {
+    return Intl.message('Released on', name: 'released_on', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

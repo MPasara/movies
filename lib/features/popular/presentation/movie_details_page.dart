@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:movies/common/presentation/widgets/favourite_movie_button.dart';
 import 'package:movies/common/utils/constants/constants.dart';
 import 'package:movies/config/env.dart';
@@ -15,6 +16,7 @@ class MovieDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dateFormatter = DateFormat.yMMMMd();
     return Scaffold(
       body: Stack(
         children: [
@@ -110,13 +112,33 @@ class MovieDetailsPage extends StatelessWidget {
                           GenreChip(name: genre),
                       ],
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
+                    movie.releaseDate != null
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                S.of(context).released_on,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(dateFormatter.format(movie.releaseDate!)),
+                            ],
+                          )
+                        : SizedBox(),
+                    const SizedBox(height: 20),
                     movie.description != ''
                         ? Text(
                             S.of(context).description,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
                           )
                         : const SizedBox(),
+
                     Column(
                       children: [
                         const SizedBox(height: 8),

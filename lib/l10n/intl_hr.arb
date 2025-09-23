@@ -27,5 +27,6 @@
   "set_language_failed" : "Postavljanje jezika nije uspjelo..",
   "favourite_movie_failed" : "Favoriranje filma nije uspjelo..",
   "load_favourite_movies_failed" : "Učitavanje spremljenih filmova nije uspjelo..",
-  "unfavourite_movie_failed" : "Neuspješno dodavanje filma u favorite"
+  "unfavourite_movie_failed" : "Neuspješno dodavanje filma u favorite",
+  "released_on" : "Datum izlaska"
 }

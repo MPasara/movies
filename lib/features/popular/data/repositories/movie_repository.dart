@@ -52,7 +52,6 @@ class MovieRepositoryImpl implements MovieRepository {
           currentPage: response.page,
           totalPages: response.totalPages,
           movies: movies,
-          // isLoading: false,
         ),
       );
     } catch (e, st) {
@@ -81,10 +80,7 @@ class MovieRepositoryImpl implements MovieRepository {
       if (_genresCache == null) {
         final genreResult = await _fetchAndCacheGenres();
         if (genreResult.isLeft) {
-          return genreResult.fold(
-            (failure) => Left(failure),
-            (_) => throw Exception(),
-          );
+          return Left(genreResult.left);
         }
       }
 
