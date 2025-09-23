@@ -28,26 +28,4 @@ class MovieEntityMapper {
       genres: genreNames,
     );
   }
-
-  MovieResponse toResponse(Movie movie, Map<String, int> reverseGenresMap) {
-    List<int> genreIds = [];
-
-    if (movie.genres.isNotEmpty && reverseGenresMap.isNotEmpty) {
-      genreIds = movie.genres
-          .map((genreName) => reverseGenresMap[genreName])
-          .where((id) => id != null)
-          .cast<int>()
-          .toList();
-    }
-
-    return MovieResponse(
-      id: movie.id,
-      title: movie.title,
-      overview: movie.description,
-      posterPath: movie.posterImagePath,
-      backdropPath: movie.backdropImagePath,
-      voteAverage: movie.voteAverage,
-      genreIds: genreIds,
-    );
-  }
 }

@@ -25,13 +25,31 @@ class AppDrawer extends StatelessWidget {
                 },
                 groupValue: locale.languageCode,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(S.of(context).general),
-                    const SizedBox(height: 30),
-                    Text(
-                      S.of(context).change_language,
-                      textAlign: TextAlign.start,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Center(
+                        child: Text(
+                          S.of(context).general,
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
+                    const SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 8.0,
+                      ),
+                      child: Text(
+                        S.of(context).change_language,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(color: Colors.grey[700]),
+                      ),
+                    ),
+
                     RadioListTile<String>(
                       value: LocaleConstants.eng,
                       title: Text(S.of(context).english),

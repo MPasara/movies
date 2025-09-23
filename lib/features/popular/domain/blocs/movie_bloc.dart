@@ -30,26 +30,18 @@ class MovieBloc extends Bloc<MovieEvent, MovieState<MovieWrapper>> {
 
     final result = await _movieRepository.fetchPopularMovies(event.page);
 
-    result.fold((failure) => emit(MovieError(failure)), (movieWrapper) {
+    result.fold((failure) => emit(MovieError(failure)), (nextWrapper) {
       if (event.page == 1 || event.isRefreshing) {
-        _movieWrapper = movieWrapper;
-        emit(MovieData(movieWrapper));
+        _movieWrapper = nextWrapper;
       } else {
-        if (_movieWrapper != null) {
-          final updatedMovieWrapper = MovieWrapper(
-            totalPages: movieWrapper.totalPages,
-            currentPage: movieWrapper.currentPage,
-            movies: [..._movieWrapper!.movies, ...movieWrapper.movies],
-            isLoading: false,
-          );
-
-          _movieWrapper = updatedMovieWrapper;
-          emit(MovieData(updatedMovieWrapper));
-        } else {
-          _movieWrapper = movieWrapper;
-          emit(MovieData(movieWrapper));
-        }
+        _movieWrapper = MovieWrapper(
+          currentPage: nextWrapper.currentPage,
+          totalPages: nextWrapper.totalPages,
+          movies: [..._movieWrapper!.movies, ...nextWrapper.movies],
+          isLoading: false,
+        );
       }
+      emit(MovieData(_movieWrapper!));
     });
   }
 
