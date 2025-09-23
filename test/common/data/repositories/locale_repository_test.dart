@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/common/data/repositories/locale_repository.dart';
-import 'package:movies/common/utils/locale_constants.dart';
+import 'package:movies/common/utils/constants/locale_constants.dart';
 import 'package:movies/generated/l10n.dart';
 
 import '../../../test_variables.dart';

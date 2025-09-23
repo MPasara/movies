@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movies/common/utils/api_path_constants.dart';
+import 'package:movies/common/utils/constants/api_path_constants.dart';
 import 'package:movies/features/popular/data/models/genre_response.dart';
 import 'package:movies/features/popular/data/models/movie_response.dart';
 import 'package:retrofit/retrofit.dart';

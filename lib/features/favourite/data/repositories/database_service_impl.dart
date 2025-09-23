@@ -1,4 +1,4 @@
-import 'package:movies/common/utils/sembast_constants.dart';
+import 'package:movies/common/utils/constants/sembast_constants.dart';
 import 'package:movies/features/favourite/data/repositories/database_service.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
 import 'package:path/path.dart';

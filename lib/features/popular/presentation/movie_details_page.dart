@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/common/presentation/widgets/favourite_movie_button.dart';
-import 'package:movies/common/utils/constants.dart';
+import 'package:movies/common/utils/constants/constants.dart';
 import 'package:movies/config/env.dart';
 import 'package:movies/features/popular/domain/entities/movie.dart';
 import 'package:movies/features/popular/presentation/widgets/genre_chip.dart';
@@ -23,12 +23,12 @@ class MovieDetailsPage extends StatelessWidget {
             height: 334,
             child: CachedNetworkImage(
               imageUrl:
-                  '${Env.tmdbImageBaseUrl}/$kImageSize300${(movie.backdropImagePath?.isNotEmpty == true) ? movie.backdropImagePath! : movie.posterImagePath}',
+                  '${Env.tmdbImageBaseUrl}$kImageSize1280${(movie.backdropImagePath?.isNotEmpty == true) ? movie.backdropImagePath! : movie.posterImagePath}',
               fit: BoxFit.cover,
               fadeInDuration: const Duration(milliseconds: 400),
               placeholder: (context, url) => const SizedBox.shrink(),
               errorWidget: (context, url, error) =>
-                  const Icon(Icons.movie, size: 40),
+                  const Icon(Icons.error_outline, size: 40, color: Colors.red),
             ),
           ),
           Positioned(

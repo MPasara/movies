@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:movies/common/utils/locale_constants.dart';
+import 'package:movies/common/utils/constants/locale_constants.dart';
 import 'package:movies/features/favourite/data/repositories/favourite_movies_repository.dart';
 import 'package:movies/generated/l10n.dart';
 

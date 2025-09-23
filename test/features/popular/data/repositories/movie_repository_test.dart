@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:either_dart/either.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:movies/common/utils/locale_constants.dart';
+import 'package:movies/common/utils/constants/locale_constants.dart';
 import 'package:movies/features/popular/data/mappers/movie_entity_mapper.dart';
 import 'package:movies/features/popular/data/models/movie_response.dart';
 import 'package:movies/features/popular/data/repositories/movie_repository.dart';

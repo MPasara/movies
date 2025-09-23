@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/common/domain/cubits/locale_cubit.dart';
-import 'package:movies/common/utils/locale_constants.dart';
+import 'package:movies/common/utils/constants/locale_constants.dart';
 import 'package:movies/generated/l10n.dart';
 
 class AppDrawer extends StatelessWidget {

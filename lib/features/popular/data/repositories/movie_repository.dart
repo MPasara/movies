@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:either_dart/either.dart';
 import 'package:movies/common/data/api_client.dart';
 import 'package:movies/common/domain/failure.dart';
-import 'package:movies/common/utils/constants.dart';
+import 'package:movies/common/utils/constants/constants.dart';
 import 'package:movies/features/popular/data/mappers/movie_entity_mapper.dart';
 import 'package:movies/features/popular/data/repositories/genre_repository.dart';
 import 'package:movies/features/popular/domain/entities/movie_wrapper.dart';
