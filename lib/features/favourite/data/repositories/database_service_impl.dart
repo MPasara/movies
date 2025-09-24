@@ -52,7 +52,11 @@ class DatabaseServiceImpl implements DatabaseService {
             backdropImagePath: movieJson['backdropImagePath'] as String?,
             voteAverage: (movieJson['voteAverage'] as num?)?.toDouble() ?? 0.0,
             genres: List<String>.from(movieJson['genres'] as List? ?? []),
-            releaseDate: movieJson['releaseDate'] as DateTime?,
+            releaseDate:
+                movieJson['releaseDate'] != null &&
+                    movieJson['releaseDate'] != ''
+                ? DateTime.tryParse(movieJson['releaseDate'] as String)
+                : null,
           ),
         );
       }
