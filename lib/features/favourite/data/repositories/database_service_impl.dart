@@ -23,6 +23,7 @@ class DatabaseServiceImpl implements DatabaseService {
       'backdropImagePath': movie.backdropImagePath,
       'voteAverage': movie.voteAverage,
       'genres': movie.genres,
+      'releaseDate': movie.releaseDate.toString(),
     };
 
     await _storeRef.record(movie.id).put(db, movieData);
@@ -51,6 +52,7 @@ class DatabaseServiceImpl implements DatabaseService {
             backdropImagePath: movieJson['backdropImagePath'] as String?,
             voteAverage: (movieJson['voteAverage'] as num?)?.toDouble() ?? 0.0,
             genres: List<String>.from(movieJson['genres'] as List? ?? []),
+            releaseDate: movieJson['releaseDate'] as DateTime?,
           ),
         );
       }
