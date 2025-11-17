@@ -18,10 +18,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -43,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -76,17 +72,32 @@ class S {
 
   /// `Popular`
   String get popular {
-    return Intl.message('Popular', name: 'popular', desc: '', args: []);
+    return Intl.message(
+      'Popular',
+      name: 'popular',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Favourites`
   String get favourites {
-    return Intl.message('Favourites', name: 'favourites', desc: '', args: []);
+    return Intl.message(
+      'Favourites',
+      name: 'favourites',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Description`
   String get description {
-    return Intl.message('Description', name: 'description', desc: '', args: []);
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Search movies`
@@ -121,7 +132,12 @@ class S {
 
   /// `Try again`
   String get try_again {
-    return Intl.message('Try again', name: 'try_again', desc: '', args: []);
+    return Intl.message(
+      'Try again',
+      name: 'try_again',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `🍿 No favourites yet?\n Your top picks will appear here soon! 🎥✨`
@@ -196,7 +212,12 @@ class S {
 
   /// `⚙️ General`
   String get general {
-    return Intl.message('⚙️ General', name: 'general', desc: '', args: []);
+    return Intl.message(
+      '⚙️ General',
+      name: 'general',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Change language`
@@ -211,12 +232,22 @@ class S {
 
   /// `English`
   String get english {
-    return Intl.message('English', name: 'english', desc: '', args: []);
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Croatian`
   String get croatian {
-    return Intl.message('Croatian', name: 'croatian', desc: '', args: []);
+    return Intl.message(
+      'Croatian',
+      name: 'croatian',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Failed to fetch genres..`
@@ -301,7 +332,12 @@ class S {
 
   /// `Released on`
   String get released_on {
-    return Intl.message('Released on', name: 'released_on', desc: '', args: []);
+    return Intl.message(
+      'Released on',
+      name: 'released_on',
+      desc: '',
+      args: [],
+    );
   }
 }
 

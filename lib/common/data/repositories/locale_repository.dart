@@ -1,5 +1,5 @@
 import 'package:either_dart/either.dart';
-import 'package:movies/common/data/local_storage_service.dart';
+import 'package:movies/common/data/services/local_storage_service.dart';
 import 'package:movies/common/domain/failure.dart';
 import 'package:movies/generated/l10n.dart';
 

@@ -1,9 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:movies/common/data/api_client.dart';
 import 'package:movies/common/data/dio_client.dart';
-import 'package:movies/common/data/local_storage_service.dart';
+import 'package:movies/common/data/services/local_storage_service.dart';
+import 'package:movies/common/data/services/package_info_service.dart';
+import 'package:movies/common/data/repositories/app_info_repository.dart';
 import 'package:movies/common/data/repositories/locale_repository.dart';
 import 'package:movies/common/domain/cubits/locale_cubit.dart';
+import 'package:movies/common/presentation/cubits/app_info/app_info_cubit.dart';
 import 'package:movies/features/favourite/data/repositories/database_service.dart';
 import 'package:movies/features/favourite/data/repositories/database_service_impl.dart';
 import 'package:movies/features/favourite/data/repositories/favourite_movies_repository.dart';
@@ -39,6 +42,8 @@ void _registerServices() {
   getIt.registerLazySingleton<LocalStorageService>(
     () => LocalStorageServiceImpl(),
   );
+
+  getIt.registerLazySingleton<PackageInfoService>(() => PackageInfoService());
 }
 
 void _registerRepositories() {
@@ -61,6 +66,14 @@ void _registerRepositories() {
   getIt.registerLazySingleton<LocaleRepository>(
     () => LocaleRepositoryImpl(getIt<LocalStorageService>()),
   );
+
+  getIt.registerLazySingleton<AppInfoRepository>(
+    () => AppInfoRepositoryImpl(getIt<PackageInfoService>()),
+  );
+
+  /* getIt.registerLazySingleton<AppInfoRepository>(
+    () => AppInfoRepositoryImpl(getIt<PackageInfoService>()),
+  ); */
 }
 
 void _registerBlocs() {
@@ -70,8 +83,11 @@ void _registerBlocs() {
     () => FavouriteMoviesBloc(getIt<FavouriteMoviesRepository>()),
   );
 
-  // ADD THIS REGISTRATION:
   getIt.registerFactory<LocaleCubit>(
     () => LocaleCubit(getIt<LocaleRepository>()),
+  );
+
+  getIt.registerFactory<AppInfoCubit>(
+    () => AppInfoCubit(getIt<AppInfoRepository>())..loadAppInfo(),
   );
 }

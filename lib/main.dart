@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:movies/common/di/dependency_injection.dart';
 import 'package:movies/common/domain/cubits/locale_cubit.dart';
+import 'package:movies/common/presentation/cubits/app_info/app_info_cubit.dart';
 import 'package:movies/common/utils/custom_observer.dart';
 import 'package:movies/features/favourite/data/repositories/database_service.dart';
 import 'package:movies/features/favourite/domain/blocs/favourite_movies_bloc.dart';
@@ -35,6 +36,7 @@ class MoviesApp extends StatelessWidget {
         BlocProvider(create: (context) => getIt<MovieBloc>()),
         BlocProvider(create: (context) => getIt<FavouriteMoviesBloc>()),
         BlocProvider(create: (context) => getIt<LocaleCubit>()),
+        BlocProvider(create: (context) => getIt<AppInfoCubit>()),
       ],
       child: Builder(
         builder: (context) {

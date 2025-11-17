@@ -1,6 +1,6 @@
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/common/data/api_client.dart';
-import 'package:movies/common/data/local_storage_service.dart';
+import 'package:movies/common/data/services/local_storage_service.dart';
 import 'package:movies/features/favourite/data/repositories/database_service.dart';
 import 'package:movies/features/popular/data/models/genre_response.dart';
 import 'package:movies/features/popular/data/models/movie_response.dart';
